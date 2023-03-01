@@ -3,11 +3,33 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Watermarker from './pages/Watermarker';
+import { Provider } from "react-redux"
+import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Watermarker />
+  },
+  {
+    path: "/home",
+    element: <>I am here</>,
+    errorElement: <>O ti Shele o</>,
+    children: [
+
+    ]
+
+  }
+])
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+
   </React.StrictMode>
 );
 
